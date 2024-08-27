@@ -1,0 +1,38 @@
+name: release
+on:
+  push:
+    branches:
+      - master
+jobs:
+  release-please:
+    name: release-please
+    runs-on: ubuntu-latest
+    outputs:
+      release-image: ${{ steps.release.outputs['packages/image--release_created'] || false }}
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - id: release
+        uses: googleapis/release-please-action@v4
+  release-packages:
+    name: release-packages
+    runs-on: ubuntu-latest
+    needs:
+      - release-please
+    strategy:
+      matrix:
+        package:
+          - name: "@joshuaavalon/fastify-plugin-image"
+            is-release: ${{ fromJSON(needs.release-please.outputs.release-image) }}
+        exclude:
+          - package:
+              is-release: false
+    permissions:
+      id-token: write
+    steps:
+      - if: ${{ matrix.package.is-release }}
+        uses: joshuaavalon/publish-npm@v1
+        with:
+          workspace: ${{ matrix.package.name }}
+          npm-token: ${{ secrets.NPM_TOKEN }}
