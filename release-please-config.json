@@ -7,7 +7,11 @@
     }
   ],
   "packages": {
-    "packages/image": {},
-    "packages/scraper": {}
+    "packages/image": {
+      "release-as": "1.0.0"
+    },
+    "packages/scraper": {
+      "release-as": "1.0.0"
+    }
   }
 }

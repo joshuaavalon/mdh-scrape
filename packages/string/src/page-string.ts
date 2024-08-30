@@ -1,17 +1,17 @@
-import { execValFn } from "#utils";
+import { execValFunc } from "@joshuaavalon/mdh-scraper";
 
-import type { EpisodeContext } from "#context";
-import type { EpisodeStringStrategy, PageSelector, ValueFunction } from "#type";
+import type { EpFunc, PageSelector, ValFunc } from "@joshuaavalon/mdh-scraper";
+import type { EpisodeContext } from "@joshuaavalon/mdh-scraper/context";
 
 export function pageString(
-  urlFn: ValueFunction<string, EpisodeContext>,
+  urlFn: ValFunc<string, EpisodeContext>,
   selector: PageSelector<string, EpisodeContext>
-): EpisodeStringStrategy {
+): EpFunc<string> {
   return async function pageStringStrategy(ctx) {
     const { browser } = ctx;
     const page = await browser.newPage();
     try {
-      const fromUrl = execValFn(urlFn, ctx);
+      const fromUrl = execValFunc(urlFn, ctx);
       await page.goto(fromUrl);
       return await selector(page, ctx);
     } finally {

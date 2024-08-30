@@ -1,6 +1,6 @@
-import type { EpisodeStringStrategy } from "#type";
+import type { EpFunc } from "@joshuaavalon/mdh-scraper";
 
-export function paddedEpNum(templates: TemplateStringsArray, ...padSizes: number[]): EpisodeStringStrategy {
+export function paddedEpNum(templates: TemplateStringsArray, ...padSizes: number[]): EpFunc<string> {
   return async function paddedEpNumStrategy(ctx) {
     const { ep } = ctx;
     return templates

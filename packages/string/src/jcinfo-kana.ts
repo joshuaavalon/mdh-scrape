@@ -1,7 +1,7 @@
-import type { EpisodeStringStrategy } from "#type";
+import type { EpFunc } from "@joshuaavalon/mdh-scraper";
 
 
-export function jcinfoKana(input: string): EpisodeStringStrategy {
+export function jcinfoKana(input: string): EpFunc<string> {
   return async function jcinfoKanaStrategy(ctx): Promise<string> {
     const { browser } = ctx;
     const page = await browser.newPage();

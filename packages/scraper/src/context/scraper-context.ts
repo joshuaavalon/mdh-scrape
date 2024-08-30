@@ -1,14 +1,10 @@
-import { Type } from "@sinclair/typebox";
-import { browserSchema, loggerSchema } from "#schema";
-
-import type { Static } from "@sinclair/typebox";
-
-export const scraperContextSchema = Type.Object({
-  browser: Type.Readonly(browserSchema),
-  logger: Type.Readonly(loggerSchema)
-});
+import type { Logger } from "pino";
+import type { Browser } from "playwright";
 
 /**
  * Readonly context for scraper
  */
-export type ScraperContext = Static<typeof scraperContextSchema>;
+export interface ScraperContext {
+  readonly browser: Browser;
+  readonly logger: Logger;
+}

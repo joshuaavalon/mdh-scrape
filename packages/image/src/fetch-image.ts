@@ -1,20 +1,15 @@
-import { Type } from "@sinclair/typebox";
-import { Value } from "@sinclair/typebox/value";
-import { scraperContextSchema } from "@joshuaavalon/mdh-scraper/context";
 import { LoggableError } from "@joshuaavalon/mdh-scraper/error";
 import { pageScreenshot } from "./page-screenshot.js";
 
-import type { Static } from "@sinclair/typebox";
 import type { ScraperContext } from "@joshuaavalon/mdh-scraper";
+import type { FetchImageDelegate } from "./batch-fetch-image.js";
 
 
-const fetchImageOptionsSchema = Type.Object({
-  method: Type.Readonly(Type.Union([Type.Const("browser" as const), Type.Const("fetch" as const)])),
-  url: Type.Readonly(Type.String()),
-  headers: Type.ReadonlyOptional(Type.Record(Type.String(), Type.String()))
-});
-
-type FetchImageOptions = Static<typeof fetchImageOptionsSchema>;
+interface FetchImageOptions {
+  readonly method: "browser" | "fetch";
+  readonly url: string;
+  readonly headers?: Record<string, string>;
+}
 
 function mapHeaders(opts: FetchImageOptions): Record<string, string> {
   const { url, headers = {} } = opts;
@@ -67,8 +62,6 @@ async function fetchImageViaFetch(opts: FetchImageOptions): Promise<Buffer> {
 
 
 export async function fetchImage(ctx: ScraperContext, opts: FetchImageOptions): Promise<Buffer> {
-  Value.Assert(scraperContextSchema, ctx);
-  Value.Assert(fetchImageOptionsSchema, opts);
   const { method } = opts;
   switch (method) {
     case "browser":
@@ -78,4 +71,10 @@ export async function fetchImage(ctx: ScraperContext, opts: FetchImageOptions): 
     default:
       throw new LoggableError({ method }, "Unknown method for fetchImage");
   }
+}
+
+export function buildFetchImageDelegate(ctx: ScraperContext, opts: Omit<FetchImageOptions, "url">): FetchImageDelegate {
+  return async function (url) {
+    return await fetchImage(ctx, { ...opts, url });
+  };
 }

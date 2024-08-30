@@ -10,6 +10,7 @@ jobs:
     outputs:
       release-image: ${{ steps.release.outputs['packages/image--release_created'] || false }}
       release-scraper: ${{ steps.release.outputs['packages/scraper--release_created'] || false }}
+      release-string: ${{ steps.release.outputs['packages/string--release_created'] || false }}
     permissions:
       contents: write
       pull-requests: write
@@ -29,6 +30,8 @@ jobs:
             is-release: ${{ fromJSON(needs.release-please.outputs.release-image) }}
           - name: "@joshuaavalon/mdh-scraper"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-scraper) }}
+          - name: "@joshuaavalon/mdh-string"
+            is-release: ${{ fromJSON(needs.release-please.outputs.release-string) }}
         exclude:
           - package:
               is-release: false

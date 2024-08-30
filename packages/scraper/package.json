@@ -17,17 +17,9 @@
       "types": "./dist/error/index.d.ts",
       "import": "./dist/error/index.js"
     },
-    "#schema": {
-      "types": "./dist/schema/index.d.ts",
-      "import": "./dist/schema/index.js"
-    },
     "#type": {
       "types": "./dist/type/index.d.ts",
       "import": "./dist/type/index.js"
-    },
-    "#utils": {
-      "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js"
     }
   },
   "exports": {
@@ -46,14 +38,6 @@
     "./func": {
       "types": "./dist/func/index.d.ts",
       "import": "./dist/func/index.js"
-    },
-    "./schema": {
-      "types": "./dist/schema/index.d.ts",
-      "import": "./dist/schema/index.js"
-    },
-    "./string": {
-      "types": "./dist/string/index.d.ts",
-      "import": "./dist/string/index.js"
     }
   },
   "homepage": "https://github.com/joshuaavalon/mdh-scrape#readme",
@@ -73,7 +57,6 @@
   "author": "Joshua Avalon",
   "license": "Apache-2.0",
   "dependencies": {
-    "@sinclair/typebox": "^0.33.7",
     "luxon": "^3.4.4",
     "pino": "^9.3.2",
     "pino-pretty": "^11.2.2",

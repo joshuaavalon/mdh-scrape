@@ -1,4 +1,4 @@
-# @joshuaavalon/scrap-image
+# @joshuaavalon/mdh-scrape-image
 
 ## Getting Started
 

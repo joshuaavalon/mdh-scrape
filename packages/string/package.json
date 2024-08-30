@@ -1,0 +1,37 @@
+{
+  "name": "@joshuaavalon/mdh-scrape-string",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "scripts": {
+    "test": "set NODE_OPTIONS=--enable-source-maps && mocha"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "homepage": "https://github.com/joshuaavalon/mdh-scrape#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuaavalon/mdh-scrape.git",
+    "directory": "packages/string"
+  },
+  "bugs": {
+    "url": "https://github.com/joshuaavalon/mdh-scrape/issues"
+  },
+  "keywords": [],
+  "files": [
+    "dist",
+    "!dist/**/__tests__/**/*"
+  ],
+  "author": "Joshua Avalon",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@joshuaavalon/mdh-scraper": "^1.0.0"
+  },
+  "dependencies": {}
+}
