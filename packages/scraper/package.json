@@ -1,0 +1,82 @@
+{
+  "name": "@joshuaavalon/mdh-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "scripts": {
+    "test": "set NODE_OPTIONS=--enable-source-maps && mocha"
+  },
+  "imports": {
+    "#context": {
+      "types": "./dist/context/index.d.ts",
+      "import": "./dist/context/index.js"
+    },
+    "#error": {
+      "types": "./dist/error/index.d.ts",
+      "import": "./dist/error/index.js"
+    },
+    "#schema": {
+      "types": "./dist/schema/index.d.ts",
+      "import": "./dist/schema/index.js"
+    },
+    "#type": {
+      "types": "./dist/type/index.d.ts",
+      "import": "./dist/type/index.js"
+    },
+    "#utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.js"
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./context": {
+      "types": "./dist/context/index.d.ts",
+      "import": "./dist/context/index.js"
+    },
+    "./error": {
+      "types": "./dist/error/index.d.ts",
+      "import": "./dist/error/index.js"
+    },
+    "./func": {
+      "types": "./dist/func/index.d.ts",
+      "import": "./dist/func/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema/index.d.ts",
+      "import": "./dist/schema/index.js"
+    },
+    "./string": {
+      "types": "./dist/string/index.d.ts",
+      "import": "./dist/string/index.js"
+    }
+  },
+  "homepage": "https://github.com/joshuaavalon/mdh-scrape#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuaavalon/mdh-scrape.git",
+    "directory": "packages/scraper"
+  },
+  "bugs": {
+    "url": "https://github.com/joshuaavalon/mdh-scrape/issues"
+  },
+  "keywords": [],
+  "files": [
+    "dist",
+    "!dist/**/__tests__/**/*"
+  ],
+  "author": "Joshua Avalon",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@sinclair/typebox": "^0.33.7",
+    "luxon": "^3.4.4",
+    "pino": "^9.3.2",
+    "pino-pretty": "^11.2.2",
+    "playwright": "^1.46.0"
+  }
+}

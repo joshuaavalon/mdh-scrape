@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       release-image: ${{ steps.release.outputs['packages/image--release_created'] || false }}
+      release-scraper: ${{ steps.release.outputs['packages/scraper--release_created'] || false }}
     permissions:
       contents: write
       pull-requests: write
@@ -23,16 +24,23 @@ jobs:
     strategy:
       matrix:
         package:
-          - name: "@joshuaavalon/fastify-plugin-image"
+          - name: "@joshuaavalon/mdh-scrape-image"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-image) }}
+          - name: "@joshuaavalon/mdh-scraper"
+            is-release: ${{ fromJSON(needs.release-please.outputs.release-scraper) }}
         exclude:
           - package:
               is-release: false
     permissions:
       id-token: write
     steps:
-      - if: ${{ matrix.package.is-release }}
-        uses: joshuaavalon/publish-npm@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          workspace: ${{ matrix.package.name }}
-          npm-token: ${{ secrets.NPM_TOKEN }}
+          node-version: lts/*
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish --workspace ${{ matrix.package.name }} --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

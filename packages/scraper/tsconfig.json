@@ -6,6 +6,5 @@
     "composite": true
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"],
-  "references": [{ "path": "../scraper" }]
+  "exclude": ["node_modules"]
 }

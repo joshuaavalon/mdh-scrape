@@ -1,30 +1,25 @@
 {
-  "name": "@joshuaavalon/scrap-image",
+  "name": "@joshuaavalon/mdh-scrape-image",
   "version": "1.0.0",
   "description": "Scrap images",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "tsc",
-    "test": "set NODE_OPTIONS=--enable-source-maps && mocha",
-    "prepublishOnly": "npm run build"
-  },
+  "scripts": {},
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     }
   },
-  "homepage": "https://github.com/joshuaavalon/scrap-image#readme",
+  "homepage": "https://github.com/joshuaavalon/mdh-scrape#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joshuaavalon/scrap-image.git",
+    "url": "git+https://github.com/joshuaavalon/mdh-scrape.git",
     "directory": "packages/image"
   },
   "bugs": {
-    "url": "https://github.com/joshuaavalon/scrap-image/issues"
+    "url": "https://github.com/joshuaavalon/mdh-scrape/issues"
   },
   "keywords": [],
   "files": [
@@ -33,6 +28,9 @@
   ],
   "author": "Joshua Avalon",
   "license": "Apache-2.0",
+  "peerDependencies": {
+    "@joshuaavalon/mdh-scraper": "^1.0.0"
+  },
   "dependencies": {
     "image-type": "^5.2.0",
     "sharp": "^0.33.4"

@@ -16,7 +16,7 @@ export default [
     languageOptions: {
       parser: typescript.parser,
       parserOptions: {
-        project: ["tsconfig.json", "packages/*/tsconfig.json"],
+        projectService: true,
         tsconfigDirName: import.meta.dirname
       }
     }

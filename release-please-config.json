@@ -7,8 +7,7 @@
     }
   ],
   "packages": {
-    "packages/prisma": {},
-    "packages/storage": {},
-    "packages/typebox": {}
+    "packages/image": {},
+    "packages/scraper": {}
   }
 }

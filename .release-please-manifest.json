@@ -1,5 +1,4 @@
 {
-  "packages/prisma": "1.1.1",
-  "packages/storage": "2.1.1",
-  "packages/typebox": "1.0.0"
+  "packages/image": "1.0.0",
+  "packages/scraper": "1.0.0"
 }

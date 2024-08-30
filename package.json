@@ -1,11 +1,12 @@
 {
-  "name": "@joshuaavalon/scrapers",
+  "name": "@joshuaavalon/mdh-scrape",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "npm run --workspaces --if-present build",
+    "prebuild": "rimraf --glob packages/*/dist packages/*/tsconfig.tsbuildinfo",
+    "build": "tsc --build ./packages/tsconfig.json",
     "test": "npm run --workspaces --if-present test",
     "lint": "eslint"
   },
@@ -16,14 +17,14 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joshuaavalon/fastify-plugins.git"
+    "url": "git+https://github.com/joshuaavalon/mdh-scrape.git"
   },
   "bugs": {
-    "url": "https://github.com/joshuaavalon/fastify-plugins/issues"
+    "url": "https://github.com/joshuaavalon/mdh-scrape/issues"
   },
-  "homepage": "https://github.com/joshuaavalon/fastify-plugins#readme",
+  "homepage": "https://github.com/joshuaavalon/mdh-scrape#readme",
   "devDependencies": {
-    "@joshuaavalon/eslint-config-typescript": "^8.1.6",
+    "@joshuaavalon/eslint-config-typescript": "^8.1.7",
     "@types/chai": "^4.3.14",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.28",
