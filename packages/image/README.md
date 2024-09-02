@@ -37,3 +37,11 @@ import { fetchImage } from "@joshuaavalon/mdh-scrape-image";
 
 const screenshot = await pageScreenshot(page);
 ```
+
+### batchFetchImage
+
+```ts
+import { batchFetchImage, fetchImage } from "@joshuaavalon/mdh-scrape-image";
+
+const screenshot = await batchFetchImage(page);
+```
