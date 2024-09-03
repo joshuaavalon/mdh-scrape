@@ -1,7 +1,7 @@
-# @joshuaavalon/mdh-scrape-string
+# @mdhs/mdhs-string
 
 ## Getting Started
 
 ```sh
-npm i @joshuaavalon/mdh-scrape-string
+npm i @mdhs/mdhs-string
 ```

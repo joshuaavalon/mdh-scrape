@@ -1,5 +1,5 @@
 {
-  "name": "@joshuaavalon/mdh-scrape",
+  "name": "@mdhs/mdhs",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -17,18 +17,19 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joshuaavalon/mdh-scrape.git"
+    "url": "git+https://github.com/mdhs/mdhs.git"
   },
   "bugs": {
-    "url": "https://github.com/joshuaavalon/mdh-scrape/issues"
+    "url": "https://github.com/mdhs/mdhs/issues"
   },
-  "homepage": "https://github.com/joshuaavalon/mdh-scrape#readme",
+  "homepage": "https://github.com/mdhs/mdhs#readme",
   "devDependencies": {
     "@joshuaavalon/eslint-config-typescript": "^8.1.7",
     "@types/chai": "^4.3.14",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.28",
     "chai": "^5.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^9.9.1",
     "globals": "^15.8.0",
     "mocha": "^10.4.0",

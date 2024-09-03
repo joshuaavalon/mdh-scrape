@@ -1,7 +1,7 @@
-import { execValFunc } from "@joshuaavalon/mdh-scraper";
+import { execValFunc } from "@mdhs/mdhsr";
 
-import type { EpFunc, PageSelector, ValFunc } from "@joshuaavalon/mdh-scraper";
-import type { EpisodeContext } from "@joshuaavalon/mdh-scraper/context";
+import type { EpFunc, PageSelector, ValFunc } from "@mdhs/mdhsr";
+import type { EpisodeContext } from "@mdhs/mdhsr/context";
 
 export function pageString(
   urlFn: ValFunc<string, EpisodeContext>,

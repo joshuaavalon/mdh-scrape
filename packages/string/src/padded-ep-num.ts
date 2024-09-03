@@ -1,4 +1,4 @@
-import type { EpFunc } from "@joshuaavalon/mdh-scraper";
+import type { EpFunc } from "@mdhs/mdhsr";
 
 export function paddedEpNum(templates: TemplateStringsArray, ...padSizes: number[]): EpFunc<string> {
   return async function paddedEpNumStrategy(ctx) {

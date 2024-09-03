@@ -1,8 +1,9 @@
 {
   "extends": "../tsconfig",
   "references": [
-    { "path": "./scraper" },
+    { "path": "./core" },
     { "path": "./image" },
+    { "path": "./scraper" },
     { "path": "./string" }
   ]
 }

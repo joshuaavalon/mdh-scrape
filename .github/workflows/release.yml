@@ -8,6 +8,7 @@ jobs:
     name: release-please
     runs-on: ubuntu-latest
     outputs:
+      release-core: ${{ steps.release.outputs['packages/core--release_created'] || false }}
       release-image: ${{ steps.release.outputs['packages/image--release_created'] || false }}
       release-scraper: ${{ steps.release.outputs['packages/scraper--release_created'] || false }}
       release-string: ${{ steps.release.outputs['packages/string--release_created'] || false }}
@@ -26,11 +27,13 @@ jobs:
     strategy:
       matrix:
         package:
-          - name: "@joshuaavalon/mdh-scrape-image"
+          - name: "@mdhs/core"
+            is-release: ${{ fromJSON(needs.release-please.outputs.release-core) }}
+          - name: "@mdhs/image"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-image) }}
-          - name: "@joshuaavalon/mdh-scraper"
+          - name: "@mdhs/scraper"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-scraper) }}
-          - name: "@joshuaavalon/mdh-string"
+          - name: "@mdhs/string"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-string) }}
         exclude:
           - package:
