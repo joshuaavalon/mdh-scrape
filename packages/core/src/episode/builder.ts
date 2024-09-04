@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import type { Builder } from "#type";
 import type { MdhTvEpisodeScraper } from "./scraper.js";
 
-export class MdhTvEpisodeScraperBuilder implements Builder< MdhTvEpisodeScraper> {
+export class MdhTvEpisodeScraperBuilder implements Builder<MdhTvEpisodeScraper> {
   private url?: MdhTvEpisodeScraper["scrapeUrl"];
   private name?: MdhTvEpisodeScraper["scrapeName"];
   private sortName?: MdhTvEpisodeScraper["scrapeSortName"];

@@ -9,9 +9,17 @@
     "test": "cross-env NODE_OPTIONS=--enable-source-maps jest"
   },
   "imports": {
+    "#browser": {
+      "types": "./dist/browser/index.d.ts",
+      "import": "./dist/browser/index.js"
+    },
     "#episode": {
       "types": "./dist/episode/index.d.ts",
       "import": "./dist/episode/index.js"
+    },
+    "#logger": {
+      "types": "./dist/logger/index.d.ts",
+      "import": "./dist/logger/index.js"
     },
     "#error": {
       "types": "./dist/error/index.d.ts",

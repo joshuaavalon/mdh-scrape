@@ -1,4 +1,8 @@
 import type { DateTime } from "luxon";
+import type { Logger } from "pino";
+import type { Browser } from "playwright";
+import type { TvEpisodeRecord } from "@media-data-hub/sdk";
+import type { Builder } from "#type";
 import type { MdhTvEpisodeScraperEpisodeContext } from "./context.js";
 
 export interface MdhTvEpisodeScraper {
