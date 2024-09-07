@@ -17,12 +17,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mdhs/mdhs.git"
+    "url": "git+https://github.com/joshuaavalon/mdhs.git"
   },
   "bugs": {
-    "url": "https://github.com/mdhs/mdhs/issues"
+    "url": "https://github.com/joshuaavalon/mdhs/issues"
   },
-  "homepage": "https://github.com/mdhs/mdhs#readme",
+  "homepage": "https://github.com/joshuaavalon/mdhs#readme",
   "devDependencies": {
     "@joshuaavalon/eslint-config-typescript": "^8.1.7",
     "@types/chai": "^4.3.14",

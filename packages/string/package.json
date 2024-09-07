@@ -20,14 +20,14 @@
       "import": "./dist/index.js"
     }
   },
-  "homepage": "https://github.com/mdhs/mdhs#readme",
+  "homepage": "https://github.com/joshuaavalon/mdhs#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mdhs/mdhs.git",
+    "url": "git+https://github.com/joshuaavalon/mdhs.git",
     "directory": "packages/string"
   },
   "bugs": {
-    "url": "https://github.com/mdhs/mdhs/issues"
+    "url": "https://github.com/joshuaavalon/mdhs/issues"
   },
   "keywords": [],
   "files": [

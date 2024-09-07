@@ -13,6 +13,7 @@ jobs:
       release-exec: ${{ steps.release.outputs['packages/exec--release_created'] || false }}
       release-image: ${{ steps.release.outputs['packages/image--release_created'] || false }}
       release-string: ${{ steps.release.outputs['packages/string--release_created'] || false }}
+      release-tmdb: ${{ steps.release.outputs['packages/string--release_created'] || false }}
     permissions:
       contents: write
       pull-requests: write
@@ -38,6 +39,8 @@ jobs:
             is-release: ${{ fromJSON(needs.release-please.outputs.release-image) }}
           - name: "@mdhs/string"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-string) }}
+          - name: "@mdhs/tmdb"
+            is-release: ${{ fromJSON(needs.release-please.outputs.release-tmdb) }}
         exclude:
           - package:
               is-release: false

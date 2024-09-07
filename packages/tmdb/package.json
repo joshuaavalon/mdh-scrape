@@ -1,5 +1,5 @@
 {
-  "name": "@mdhs/exec",
+  "name": "@mdhs/tmdb",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -17,7 +17,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joshuaavalon/mdhs.git",
-    "directory": "packages/exec"
+    "directory": "packages/tmdb"
   },
   "bugs": {
     "url": "https://github.com/joshuaavalon/mdhs/issues"
@@ -30,9 +30,6 @@
   "author": "Joshua Avalon",
   "license": "Apache-2.0",
   "dependencies": {
-    "@mdhs/browser": "^1.0.0",
-    "@mdhs/core": "^1.0.0",
-    "@mdhs/image": "^1.0.0",
-    "@media-data-hub/sdk": "^1.1.2"
+    "@mdhs/core": "^1.0.0"
   }
 }

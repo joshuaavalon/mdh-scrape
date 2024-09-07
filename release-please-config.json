@@ -21,6 +21,9 @@
     },
     "packages/string": {
       "release-as": "1.0.0"
+    },
+    "packages/tmdb": {
+      "release-as": "1.0.0"
     }
   }
 }
