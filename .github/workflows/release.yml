@@ -8,9 +8,10 @@ jobs:
     name: release-please
     runs-on: ubuntu-latest
     outputs:
+      release-browser: ${{ steps.release.outputs['packages/browser--release_created'] || false }}
       release-core: ${{ steps.release.outputs['packages/core--release_created'] || false }}
+      release-exec: ${{ steps.release.outputs['packages/exec--release_created'] || false }}
       release-image: ${{ steps.release.outputs['packages/image--release_created'] || false }}
-      release-scraper: ${{ steps.release.outputs['packages/scraper--release_created'] || false }}
       release-string: ${{ steps.release.outputs['packages/string--release_created'] || false }}
     permissions:
       contents: write
@@ -27,12 +28,14 @@ jobs:
     strategy:
       matrix:
         package:
+          - name: "@mdhs/browser"
+            is-release: ${{ fromJSON(needs.release-please.outputs.release-browser) }}
           - name: "@mdhs/core"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-core) }}
+          - name: "@mdhs/exec"
+            is-release: ${{ fromJSON(needs.release-please.outputs.release-exec) }}
           - name: "@mdhs/image"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-image) }}
-          - name: "@mdhs/scraper"
-            is-release: ${{ fromJSON(needs.release-please.outputs.release-scraper) }}
           - name: "@mdhs/string"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-string) }}
         exclude:

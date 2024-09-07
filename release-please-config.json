@@ -7,10 +7,19 @@
     }
   ],
   "packages": {
+    "packages/browser": {
+      "release-as": "1.0.0"
+    },
+    "packages/core": {
+      "release-as": "1.0.0"
+    },
+    "packages/exec": {
+      "release-as": "1.0.0"
+    },
     "packages/image": {
       "release-as": "1.0.0"
     },
-    "packages/scraper": {
+    "packages/string": {
       "release-as": "1.0.0"
     }
   }

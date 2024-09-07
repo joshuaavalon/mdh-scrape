@@ -1,9 +1,10 @@
 {
   "extends": "../tsconfig",
   "references": [
+    { "path": "./browser" },
     { "path": "./core" },
+    { "path": "./exec" },
     { "path": "./image" },
-    { "path": "./scraper" },
     { "path": "./string" }
   ]
 }

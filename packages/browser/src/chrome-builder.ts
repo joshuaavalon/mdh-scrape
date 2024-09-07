@@ -2,7 +2,7 @@ import { chromium } from "playwright";
 
 import type { LaunchOptions } from "playwright";
 import type { Browser } from "playwright";
-import type { Builder } from "#type";
+import type { Builder } from "@mdhs/core";
 
 export class ChromeBuilder implements Builder<Promise<Browser>> {
   private readonly opts: LaunchOptions;
@@ -16,10 +16,10 @@ export class ChromeBuilder implements Builder<Promise<Browser>> {
   }
 
   public static withDefault(opts?: LaunchOptions): ChromeBuilder {
-    const defaultOpts: LaunchOptions = {
+    const defaultOpts = {
       executablePath: "/usr/bin/chromium",
       args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu"]
-    };
+    } satisfies LaunchOptions;
     return new ChromeBuilder({ ...defaultOpts, ...opts });
   }
 }
