@@ -6,12 +6,6 @@
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
   "scripts": {},
-  "imports": {
-    "#sort-title": {
-      "types": "./dist/sort-title/index.d.ts",
-      "import": "./dist/sort-title/index.js"
-    }
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
