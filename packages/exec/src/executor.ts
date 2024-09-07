@@ -30,6 +30,13 @@ interface MdhTvEpisodeExecutorContext {
   batchScrapeImage: BatchScrapeImageDelegate;
 }
 
+function range(start: number, end: number): number[] {
+  if (start > end) {
+    return [];
+  }
+  return [...Array(end - start).keys()].map(i => i + start);
+}
+
 export class MdhTvEpisodeExecutor {
   private readonly scraperBuilder: Builder<MdhTvEpisodeScraper>;
   private readonly loggerBuilder: Builder<Logger>;
@@ -60,12 +67,22 @@ export class MdhTvEpisodeExecutor {
     const sdk = await this.sdkBuilder.build();
     const result: TvEpisodeRecord[] = [];
     try {
-      for (let epNum = fromEp; epNum <= toEp; epNum++) {
+      await Promise.all(range(fromEp, toEp + 1).map(async epNum => {
         const data = await this.scrapeEpisode(executorCtx, scraperCtx, epNum);
         const res = await sdk.c("tvEpisode").create(data);
+        for (const poster of res.posters) {
+          const url = sdk.getAdminThumbUrl(res, poster);
+          await fetch(url);
+        }
         result.push(res);
-      }
-      return { "table-row-object": result };
+      }));
+      return {
+        "table-row-object": result.toSorted((a, b) => {
+          const { order: aOrder = 0 } = a;
+          const { order: bOrder = 0 } = b;
+          return aOrder - bOrder;
+        })
+      };
     } catch (err) {
       if (err instanceof LoggableError) {
         logger.error({ ...err.createLogObject(), err }, "Failed to scrape episode(s)");
