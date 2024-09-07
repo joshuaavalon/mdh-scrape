@@ -1,11 +1,5 @@
-# @mdhs/browser
-
-> It is for developer use only
-
-Core package for Media Data Hub scraper.
-
-## Getting Started
+# @mdhs/tmdb
 
 ```sh
-npm i @mdhs/browser
+npm i @mdhs/tmdb
 ```
