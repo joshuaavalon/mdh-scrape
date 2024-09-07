@@ -8,7 +8,7 @@ function isValidValue(value: unknown): boolean {
 }
 
 export interface Func<T, U extends unknown[]> {
-  (...args: U): T;
+  (...args: U): Promise<T>;
 }
 
 export class ChainFuncBuilder<T, U extends unknown[]> implements Builder<Func<T, U>> {
@@ -35,11 +35,11 @@ export class ChainFuncBuilder<T, U extends unknown[]> implements Builder<Func<T,
 
   public build(): Func<T, U> {
     const chains = [...this.chains];
-    return (...args) => {
+    return async (...args) => {
       let error = new LoggableError({ }, "No chain(s) func exists");
       for (const chain of chains) {
         try {
-          return chain(...args);
+          return await chain(...args);
         } catch (cause) {
           if (cause instanceof Error) {
             cause.cause = error;
