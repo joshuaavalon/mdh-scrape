@@ -15,8 +15,6 @@
     "packages/exec": {},
     "packages/image": {},
     "packages/string": {},
-    "packages/tmdb": {
-      "release-as": "1.0.2"
-    }
+    "packages/tmdb": {}
   }
 }
