@@ -7,23 +7,14 @@
     }
   ],
   "packages": {
-    "packages/browser": {
+    "packages/browser": {},
+    "packages/core": {},
+    "packages/date": {
       "release-as": "1.0.0"
     },
-    "packages/core": {
-      "release-as": "1.0.0"
-    },
-    "packages/exec": {
-      "release-as": "1.0.0"
-    },
-    "packages/image": {
-      "release-as": "1.0.0"
-    },
-    "packages/string": {
-      "release-as": "1.0.0"
-    },
-    "packages/tmdb": {
-      "release-as": "1.0.0"
-    }
+    "packages/exec": {},
+    "packages/image": {},
+    "packages/string": {},
+    "packages/tmdb": {}
   }
 }
