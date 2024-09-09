@@ -1,5 +1,5 @@
 import type { Logger } from "pino";
-import type { Browser, Page } from "playwright";
+import type { Browser, Locator, Page } from "playwright";
 import type { TvEpisodeRecord } from "@media-data-hub/sdk";
 
 /**
@@ -15,6 +15,7 @@ export interface MdhTvEpisodeScraperContext {
  * Context for MdhTvEpisodeScraper per episode
  */
 export interface MdhTvEpisodeScraperEpisodeContext extends MdhTvEpisodeScraperContext {
+  rootLocator: Locator;
   page: Page;
   epInfo: Readonly<EpisodeInfo>;
 }
