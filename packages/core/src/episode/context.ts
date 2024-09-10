@@ -15,7 +15,7 @@ export interface MdhTvEpisodeScraperContext {
  * Context for MdhTvEpisodeScraper per episode
  */
 export interface MdhTvEpisodeScraperEpisodeContext extends MdhTvEpisodeScraperContext {
-  rootLocator: Locator;
+  // rootLocator: Locator;
   page: Page;
   epInfo: Readonly<EpisodeInfo>;
 }

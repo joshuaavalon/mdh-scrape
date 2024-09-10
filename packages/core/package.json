@@ -21,6 +21,10 @@
       "types": "./dist/error/index.d.ts",
       "import": "./dist/error/index.js"
     },
+    "#schema": {
+      "types": "./dist/schema/index.d.ts",
+      "import": "./dist/schema/index.js"
+    },
     "#type": {
       "types": "./dist/type/index.d.ts",
       "import": "./dist/type/index.js"
