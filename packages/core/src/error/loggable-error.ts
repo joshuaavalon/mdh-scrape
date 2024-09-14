@@ -1,3 +1,5 @@
+import type { ValueErrorIterator } from "@sinclair/typebox/value";
+
 export class LoggableError extends Error {
   private readonly logObj: Record<string, unknown>;
   private screenshot?: Buffer;
@@ -17,5 +19,13 @@ export class LoggableError extends Error {
 
   public getScreenshotString(): string | undefined {
     return this.screenshot?.toString("base64");
+  }
+
+  public static fromValidation(errors: ValueErrorIterator): LoggableError {
+    const causes = [...errors].map(e => {
+      const { type, message, path } = e;
+      return { type, message, path };
+    });
+    return new LoggableError({ causes }, "Fail to validate");
   }
 }

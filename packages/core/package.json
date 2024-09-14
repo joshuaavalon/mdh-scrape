@@ -53,6 +53,7 @@
   "author": "Joshua Avalon",
   "license": "Apache-2.0",
   "dependencies": {
+    "@joshuaavalon/async-event-emitter": "^1.0.0",
     "@media-data-hub/sdk": "^1.1.2",
     "@types/luxon": "^3.4.2",
     "luxon": "^3.4.4",

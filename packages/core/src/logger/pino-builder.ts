@@ -36,3 +36,15 @@ export class PinoLoggerBuilder implements Builder<Logger> {
     return new PinoLoggerBuilder({ ...defaultOpts, ...opts });
   }
 }
+
+export function buildPino(opts?: LoggerOptions): Logger {
+  const defaultOpts: LoggerOptions = {
+    level: "info",
+    transport: {
+      target: "pino-pretty",
+      options: { colorize: true }
+    },
+    serializers: { err: errorSerializer }
+  };
+  return pino({ ...defaultOpts, ...opts });
+}
