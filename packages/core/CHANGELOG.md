@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/joshuaavalon/mdhs/compare/core-v1.0.0...core-v2.0.0) (2024-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* refactor api
+
+### Code Refactoring
+
+* refactor api ([c719002](https://github.com/joshuaavalon/mdhs/commit/c719002c757848618de772dc71cc26d11b49c437))
+
 ## [1.0.0](https://github.com/joshuaavalon/mdhs/compare/core-v1.0.0...core-v1.0.0) (2024-09-07)
 
 
