@@ -9,12 +9,6 @@
   "packages": {
     "packages/browser": {},
     "packages/core": {},
-    "packages/date": {
-      "release-as": "1.0.0"
-    },
-    "packages/exec": {},
-    "packages/image": {},
-    "packages/string": {},
     "packages/tmdb": {}
   }
 }

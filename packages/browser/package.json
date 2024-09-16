@@ -30,6 +30,7 @@
   "author": "Joshua Avalon",
   "license": "Apache-2.0",
   "dependencies": {
-    "@mdhs/core": "^1.0.0"
+    "@mdhs/core": "^1.0.0",
+    "playwright": "^1.47.1"
   }
 }
