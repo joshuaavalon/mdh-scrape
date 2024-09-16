@@ -36,8 +36,5 @@
     "rimraf": "^6.0.1",
     "typescript": "^5.4.2"
   },
-  "dependencies": {
-    "@mdhs/core": "^1.0.0",
-    "@sinclair/typebox": "^0.33.9"
-  }
+  "dependencies": {}
 }

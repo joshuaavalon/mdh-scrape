@@ -13,6 +13,10 @@
       "types": "./dist/episode/index.d.ts",
       "import": "./dist/episode/index.js"
     },
+    "#func": {
+      "types": "./dist/func/index.d.ts",
+      "import": "./dist/func/index.js"
+    },
     "#logger": {
       "types": "./dist/logger/index.d.ts",
       "import": "./dist/logger/index.js"
@@ -24,10 +28,6 @@
     "#schema": {
       "types": "./dist/schema/index.d.ts",
       "import": "./dist/schema/index.js"
-    },
-    "#type": {
-      "types": "./dist/type/index.d.ts",
-      "import": "./dist/type/index.js"
     }
   },
   "exports": {
@@ -55,10 +55,12 @@
   "dependencies": {
     "@joshuaavalon/async-event-emitter": "^1.0.0",
     "@media-data-hub/sdk": "^1.1.2",
+    "@sinclair/typebox": "^0.33.9",
     "@types/luxon": "^3.4.2",
+    "image-type": "^5.2.0",
     "luxon": "^3.4.4",
     "pino": "^9.3.2",
     "pino-pretty": "^11.2.2",
-    "playwright": "^1.46.0"
+    "sharp": "^0.33.5"
   }
 }
