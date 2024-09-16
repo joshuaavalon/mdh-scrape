@@ -3,7 +3,6 @@
   "references": [
     { "path": "./browser" },
     { "path": "./core" },
-    { "path": "./exec" },
     { "path": "./tmdb" }
   ]
 }

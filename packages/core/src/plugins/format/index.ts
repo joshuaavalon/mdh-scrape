@@ -9,6 +9,7 @@ export interface FormatPluginOptions {
   postScrapeSortName?: boolean;
   postScrapeDescription?: boolean;
   postScrapePosters?: boolean;
+  postScrapeAirDate?: boolean;
 }
 
 export const formatPlugin: EpisodeScraperPlugin<FormatPluginOptions> = async (scraper, opts) => {
@@ -17,7 +18,8 @@ export const formatPlugin: EpisodeScraperPlugin<FormatPluginOptions> = async (sc
     preScrapeSortName = true,
     postScrapeSortName = true,
     postScrapeDescription = true,
-    postScrapePosters = true
+    postScrapePosters = true,
+    postScrapeAirDate = true
   } = opts;
   if (postScrapeName) {
     scraper.on("postScrapeName", (_ctx, epCtx) => {
@@ -59,6 +61,11 @@ export const formatPlugin: EpisodeScraperPlugin<FormatPluginOptions> = async (sc
           poster.data = await compressImage(poster.data);
         }));
         epCtx.result.posters = posters;
+      });
+    }
+    if (postScrapeAirDate) {
+      scraper.on("postScrapeAirDate", async (_ctx, epCtx) => {
+        epCtx.result.airDate = epCtx.result.airDate?.setZone("utc");
       });
     }
   }

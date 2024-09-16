@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-export type RichDisplayRendering = Error | File | Gif | Html | Jpg | Markdown | Png | RenderAll | Svg | TableColumn | TableRow | TableRowObject;
+export type RichDisplayRendering = Base64File | ErrorResult | Gif | Html | Jpg | Markdown | Png | RenderAll | Svg | TableColumn | TableRow | TableRowObject;
 
 export interface TableColumn {
   "table-col": { [key: string]: unknown[] };
@@ -15,7 +15,7 @@ export interface TableRowObject<T extends Record<string, unknown> = Record<strin
   "table-row-object": T[];
 }
 
-export interface File {
+export interface Base64File {
   file: {
     filename: string;
     content: string;
@@ -52,7 +52,7 @@ export interface Svg {
   };
 }
 
-export interface Error {
+export interface ErrorResult {
   error: {
     name: string;
     message: string;
@@ -60,5 +60,5 @@ export interface Error {
 }
 
 export interface RenderAll {
-  render_all: Exclude<RichDisplayRendering, RenderAll> [];
+  render_all: Exclude<RichDisplayRendering, RenderAll>[];
 }

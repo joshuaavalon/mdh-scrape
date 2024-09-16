@@ -10,7 +10,6 @@ jobs:
     outputs:
       release-browser: ${{ steps.release.outputs['packages/browser--release_created'] || false }}
       release-core: ${{ steps.release.outputs['packages/core--release_created'] || false }}
-      release-exec: ${{ steps.release.outputs['packages/exec--release_created'] || false }}
       release-tmdb: ${{ steps.release.outputs['packages/tmdb--release_created'] || false }}
     permissions:
       contents: write
@@ -31,8 +30,6 @@ jobs:
             is-release: ${{ fromJSON(needs.release-please.outputs.release-browser) }}
           - name: "@mdhs/core"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-core) }}
-          - name: "@mdhs/exec"
-            is-release: ${{ fromJSON(needs.release-please.outputs.release-exec) }}
           - name: "@mdhs/tmdb"
             is-release: ${{ fromJSON(needs.release-please.outputs.release-tmdb) }}
         exclude:

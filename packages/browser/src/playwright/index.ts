@@ -1,5 +1,5 @@
 import { chromium, firefox } from "playwright";
-import { LoggableError } from "@mdhs/core";
+import { LoggableError, screenshotPage } from "@mdhs/core";
 import { createPage } from "./create-page.js";
 
 import type { Browser, LaunchOptions, Locator, Page } from "playwright";
@@ -66,6 +66,16 @@ function onScrapeEpisodeStart(): Listener<"scrapeEpisodeStart", EpisodeScraperEv
 export const playwrightPlugin: EpisodeScraperPlugin<PlaywrightPluginOptions> = async (scraper, opts) => {
   scraper.on("init", onInit(opts));
   scraper.on("scrapeEpisodeStart", onScrapeEpisodeStart());
+  scraper.on("scrapeEpisodeError", async (_ctx, epCtx, result) => {
+    const { page } = epCtx;
+    result.value = { screenshot: await screenshotPage(page) };
+  });
+  scraper.on("scrapeEpisodeEnd", async (_ctx, epCtx) => {
+    await epCtx.page.close();
+  });
+  scraper.on("close", async ctx => {
+    await ctx.browser.close();
+  });
 };
 
 

@@ -9,7 +9,6 @@
   "packages": {
     "packages/browser": {},
     "packages/core": {},
-    "packages/exec": {},
     "packages/tmdb": {}
   }
 }

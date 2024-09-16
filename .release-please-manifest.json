@@ -1,6 +1,5 @@
 {
   "packages/browser": "1.0.0",
   "packages/core": "1.0.0",
-  "packages/exec": "1.0.0",
   "packages/tmdb": "1.0.1"
 }

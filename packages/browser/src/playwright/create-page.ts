@@ -16,12 +16,12 @@ export type ResourceType =
   | "xhr";
 
 export interface PageOptions {
-  timeout: number;
-  blockTypes: ResourceType[];
+  timeout?: number;
+  blockTypes?: ResourceType[];
 }
 
 export async function createPage(browser: Browser, pageOpts: PageOptions): Promise<Page> {
-  const { timeout, blockTypes } = pageOpts;
+  const { timeout = 60 * 1000, blockTypes = ["image", "font", "media"] } = pageOpts;
   const page = await browser.newPage();
   page.setDefaultTimeout(timeout);
   if (blockTypes.length > 0) {

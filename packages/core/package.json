@@ -17,10 +17,6 @@
       "types": "./dist/func/index.d.ts",
       "import": "./dist/func/index.js"
     },
-    "#logger": {
-      "types": "./dist/logger/index.d.ts",
-      "import": "./dist/logger/index.js"
-    },
     "#error": {
       "types": "./dist/error/index.d.ts",
       "import": "./dist/error/index.js"

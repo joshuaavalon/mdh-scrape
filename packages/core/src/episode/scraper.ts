@@ -34,6 +34,8 @@ export interface EpisodeScraperEventResult<T> {
 export interface EpisodeScraperEvents {
   init: [EpisodeScraperContext];
   scrapeEpisodeStart: EpisodeScraperEventArgs;
+  scrapeEpisodeEnd: EpisodeScraperEventArgs;
+  scrapeEpisodeError: EpisodeScraperValueEventArgs<Record<string, unknown>>;
   preScrapeName: EpisodeScraperEventArgs;
   scrapeName: EpisodeScraperValueEventArgs<string>;
   postScrapeName: EpisodeScraperEventArgs;
@@ -61,7 +63,6 @@ export interface EpisodeScraperEvents {
   preScrapePosters: EpisodeScraperEventArgs;
   scrapePosters: EpisodeScraperValueEventArgs<File[]>;
   postScrapePosters: EpisodeScraperEventArgs;
-  scrapeEpisodeEnd: EpisodeScraperEventArgs;
   close: [EpisodeScraperContext];
 }
 
@@ -118,93 +119,108 @@ export class EpisodeScraper extends AsyncEventEmitter<EpisodeScraperEvents> {
     await plugin(this, opts);
   }
 
-  public async scrape(fromEp: number, toEp: number): Promise<void> {
+  public async scrape(fromEp: number, toEp: number): Promise<(LoggableError | ScrapedEpisode)[]> {
     const ctx: EpisodeScraperContext = { scraper: this, logger: this.logger };
     await this.emit("init", ctx);
-
-    this.logger.info({ fromEp, toEp }, "Start scraping episode(s)");
-    await Promise.all(range(fromEp, toEp + 1).map(async epNum => {
-      await this.scrapeEpisode(ctx, epNum);
-    }));
+    try {
+      this.logger.info({ fromEp, toEp }, "Start scraping episode(s)");
+      return await Promise.all(range(fromEp, toEp + 1).map(async epNum => await this.scrapeEpisode(ctx, epNum)));
+    } finally {
+      await this.emit("close", ctx);
+    }
   }
 
-  private async scrapeEpisode(ctx: EpisodeScraperContext, epNum: number): Promise<ScrapedEpisode> {
+  private async scrapeEpisode(ctx: EpisodeScraperContext, epNum: number): Promise<LoggableError | ScrapedEpisode> {
     const result: Partial<ScrapedEpisode> = {};
     const epCtx: EpisodeScraperEpisodeContext = {
       metadata: { num: epNum, padNum: epNum.toString().padStart(2, "0") },
       result
     };
-    await this.emit("scrapeEpisodeStart", ctx, epCtx);
+    try {
+      await this.emit("scrapeEpisodeStart", ctx, epCtx);
+      const name = await this.scrapeValue("scrapeName", ctx, epCtx);
+      if (!name) {
+        throw new LoggableError({ result }, "Cannot scrape name");
+      }
+      result.name = name;
+      this.logger.info({ epNum, result }, "Scraped name");
 
+      const sortName = await this.scrapeValue("scrapeSortName", ctx, epCtx);
+      if (!sortName) {
+        throw new LoggableError({ result }, "Cannot scrape sortName");
+      }
+      result.sortName = sortName;
+      this.logger.info({ epNum, result }, "Scraped sortName");
 
-    const name = await this.scrapeValue("scrapeName", ctx, epCtx);
-    if (!name) {
-      throw new LoggableError({ result }, "Cannot scrape name");
+      const description = await this.scrapeValue("scrapeDescription", ctx, epCtx);
+      if (!description) {
+        throw new LoggableError({ result }, "Cannot scrape description");
+      }
+      result.description = description;
+      this.logger.info({ epNum, result }, "Scraped description");
+
+      const language = await this.scrapeValue("scrapeLanguage", ctx, epCtx);
+      if (!language) {
+        throw new LoggableError({ result }, "Cannot scrape language");
+      }
+      result.language = language;
+      this.logger.info({ epNum, result }, "Scraped language");
+
+      const country = await this.scrapeValue("scrapeCountry", ctx, epCtx);
+      if (!country) {
+        throw new LoggableError({ result }, "Cannot scrape country");
+      }
+      result.country = country;
+      this.logger.info({ epNum, result }, "Scraped country");
+
+      const tvSeason = await this.scrapeValue("scrapeTvSeason", ctx, epCtx);
+      if (!tvSeason) {
+        throw new LoggableError({ result }, "Cannot scrape tvSeason");
+      }
+      result.tvSeason = tvSeason;
+      this.logger.info({ epNum, result }, "Scraped tvSeason");
+
+      const rating = await this.scrapeValue("scrapeRating", ctx, epCtx);
+      if (!rating) {
+        throw new LoggableError({ result }, "Cannot scrape rating");
+      }
+      result.rating = rating;
+      this.logger.info({ epNum, result }, "Scraped rating");
+
+      const airDate = await this.scrapeValue("scrapeAirDate", ctx, epCtx);
+      if (!airDate) {
+        throw new LoggableError({ result }, "Cannot scrape airDate");
+      }
+      result.airDate = airDate;
+      this.logger.info({ epNum, result }, "Scraped airDate");
+
+      const posters = await this.scrapeValue("scrapePosters", ctx, epCtx);
+      if (!posters) {
+        throw new LoggableError({ result }, "Cannot scrape posters");
+      }
+      result.posters = posters;
+      this.logger.info({ epNum, result }, "Scraped posters");
+
+      if (!Value.Check(scrapedEpisodeSchema, result)) {
+        const errors = Value.Errors(scrapedEpisodeSchema, result);
+        throw LoggableError.fromValidation(errors);
+      }
+      return result;
+    } catch (cause) {
+      const result = await this.emitValue("scrapeEpisodeError", ctx, epCtx) ?? {};
+      const { screenshot, ...others } = result;
+      let err: LoggableError;
+      if (Buffer.isBuffer(screenshot)) {
+        err = new LoggableError({ ...others }, "Fail to scrape episode", { cause });
+        err.setScreenshot(screenshot);
+      } else {
+        err = new LoggableError({ ...result }, "Fail to scrape episode", { cause });
+      }
+      this.logger.error({ epCtx, ...err.createLogObject(), err }, err.message);
+      return err;
+    } finally {
+      await this.emit("scrapeEpisodeEnd", ctx, epCtx);
     }
-    result.name = name;
-    this.logger.info({ epNum, result }, "Scraped name");
-
-    const sortName = await this.scrapeValue("scrapeSortName", ctx, epCtx);
-    if (!sortName) {
-      throw new LoggableError({ result }, "Cannot scrape sortName");
-    }
-    result.sortName = sortName;
-    this.logger.info({ epNum, result }, "Scraped sortName");
-
-    const description = await this.scrapeValue("scrapeDescription", ctx, epCtx);
-    if (!description) {
-      throw new LoggableError({ result }, "Cannot scrape description");
-    }
-    result.description = description;
-    this.logger.info({ epNum, result }, "Scraped description");
-
-    const language = await this.scrapeValue("scrapeLanguage", ctx, epCtx);
-    if (!language) {
-      throw new LoggableError({ result }, "Cannot scrape language");
-    }
-    result.language = language;
-    this.logger.info({ epNum, result }, "Scraped language");
-
-    const country = await this.scrapeValue("scrapeCountry", ctx, epCtx);
-    if (!country) {
-      throw new LoggableError({ result }, "Cannot scrape country");
-    }
-    result.country = country;
-    this.logger.info({ epNum, result }, "Scraped country");
-
-    const tvSeason = await this.scrapeValue("scrapeTvSeason", ctx, epCtx);
-    if (!tvSeason) {
-      throw new LoggableError({ result }, "Cannot scrape tvSeason");
-    }
-    result.tvSeason = tvSeason;
-    this.logger.info({ epNum, result }, "Scraped tvSeason");
-
-    const rating = await this.scrapeValue("scrapeRating", ctx, epCtx);
-    if (!rating) {
-      throw new LoggableError({ result }, "Cannot scrape rating");
-    }
-    result.rating = rating;
-    this.logger.info({ epNum, result }, "Scraped rating");
-
-    const airDate = await this.scrapeValue("scrapeAirDate", ctx, epCtx);
-    if (!airDate) {
-      throw new LoggableError({ result }, "Cannot scrape airDate");
-    }
-    result.airDate = airDate;
-    this.logger.info({ epNum, result }, "Scraped airDate");
-
-    const posters = await this.scrapeValue("scrapePosters", ctx, epCtx);
-    if (!posters) {
-      throw new LoggableError({ result }, "Cannot scrape posters");
-    }
-    result.posters = posters;
-    this.logger.info({ epNum, result }, "Scraped posters");
-
-    if (!Value.Check(scrapedEpisodeSchema, result)) {
-      const errors = Value.Errors(scrapedEpisodeSchema, result);
-      throw LoggableError.fromValidation(errors);
-    }
-    return result;
   }
 
   public async emitValue<T extends EpisodeScraperValueEventKeys>(event: T, ctx: EpisodeScraperContext, epCtx: EpisodeScraperEpisodeContext): Promise<EpisodeScraperValueEventValue<T> | undefined> {

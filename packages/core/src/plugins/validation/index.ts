@@ -26,5 +26,14 @@ export const validationPlugin: EpisodeScraperPlugin<ValidationPluginOptions> = a
   scraper.on("postScrapeTvSeason", validateNotEmpty("tvSeason"));
   scraper.on("postScrapeLanguage", validateNotEmpty("language"));
   scraper.on("postScrapeCountry", validateNotEmpty("country"));
+  scraper.on("postScrapeAirDate", (_ctx, epCtx) => {
+    const { airDate } = epCtx.result;
+    if (!airDate) {
+      return;
+    }
+    if (!airDate.isValid) {
+      throw new LoggableError({ }, airDate.invalidReason ?? "Invalid airDate");
+    }
+  });
 };
 
