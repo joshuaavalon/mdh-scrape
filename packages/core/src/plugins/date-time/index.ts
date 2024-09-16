@@ -23,7 +23,7 @@ export const dateTimePlugin: EpisodeScraperPlugin<DateTimePluginOptions> = async
       return;
     }
     const dateTime = mapping[nearestEp];
-    result.value = dateTime.plus({ days: (epNum - nearestEp + 1) * span });
+    result.value = dateTime.plus({ days: (epNum - nearestEp) * span });
   });
 };
 
