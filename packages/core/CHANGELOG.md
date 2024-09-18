@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/joshuaavalon/mdhs/compare/core-v2.0.0...core-v2.0.1) (2024-09-18)
+
+
+### Bug Fixes
+
+* **core:** upload exports ([868478d](https://github.com/joshuaavalon/mdhs/commit/868478deadfbe5377502a27168c33f7dea9236c6))
+
 ## [2.0.0](https://github.com/joshuaavalon/mdhs/compare/core-v1.0.0...core-v2.0.0) (2024-09-16)
 
 
