@@ -13,7 +13,7 @@ const filterError = function (error: SerializedError): SerializedError {
 const errorSerializer = pinoStd.wrapErrorSerializer(err => filterError(pinoStd.errWithCause(err.raw)));
 
 
-export function buildPino(opts?: LoggerOptions): Logger {
+export function createPino(opts?: LoggerOptions): Logger {
   const defaultOpts: LoggerOptions = {
     level: "info",
     transport: {
