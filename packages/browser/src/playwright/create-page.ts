@@ -20,7 +20,7 @@ export interface PageOptions {
   blockTypes?: ResourceType[];
 }
 
-export async function createPage(browser: Browser, pageOpts: PageOptions): Promise<Page> {
+export async function createPage(browser: Browser, pageOpts: PageOptions = {}): Promise<Page> {
   const { timeout = 60 * 1000, blockTypes = ["image", "font", "media"] } = pageOpts;
   const page = await browser.newPage();
   page.setDefaultTimeout(timeout);

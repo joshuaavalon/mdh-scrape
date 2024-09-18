@@ -11,8 +11,8 @@ export type { ResourceType, PageOptions } from "./create-page.js";
 
 export interface PlaywrightPluginOptions {
   type: "chromium" | "firefox";
-  launchOptions: LaunchOptions;
-  pageOptions: PageOptions;
+  launchOptions?: Partial<LaunchOptions>;
+  pageOptions?: Partial<PageOptions>;
 }
 
 function onInit(opts: PlaywrightPluginOptions): Listener<"init", EpisodeScraperEvents> {
