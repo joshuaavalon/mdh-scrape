@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.3](https://github.com/joshuaavalon/mdhs/compare/core-v2.0.2...core-v2.0.3) (2024-09-18)
+
+
+### Bug Fixes
+
+* Add missing order ([829e980](https://github.com/joshuaavalon/mdhs/commit/829e980273bf60076e78c76894a33bf85ff1ce49))
+* Default to redact buffer ([4d03021](https://github.com/joshuaavalon/mdhs/commit/4d030214eb91170fa058b002467df4285c766f3b))
+
 ## [2.0.2](https://github.com/joshuaavalon/mdhs/compare/core-v2.0.1...core-v2.0.2) (2024-09-18)
 
 
