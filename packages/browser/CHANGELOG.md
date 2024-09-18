@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.2](https://github.com/joshuaavalon/mdhs/compare/browser-v2.0.1...browser-v2.0.2) (2024-09-18)
+
+
+### Bug Fixes
+
+* exports ([1b5bd50](https://github.com/joshuaavalon/mdhs/commit/1b5bd5058ae3395ef67186e8b3c4197f0d7c755d))
+* make playwright options partial ([5ccc605](https://github.com/joshuaavalon/mdhs/commit/5ccc605614c82d5642f6630345e912c913b40ea9))
+
 ## [2.0.1](https://github.com/joshuaavalon/mdhs/compare/browser-v2.0.0...browser-v2.0.1) (2024-09-18)
 
 
