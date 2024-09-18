@@ -102,6 +102,7 @@ function range(start: number, end: number): number[] {
 function preEvent<T extends EpisodeScraperValueEventFullKeys>(event: T): PreEvent<T> {
   return `pre${event.charAt(0).toUpperCase()}${event.slice(1)}` as PreEvent<T>;
 }
+
 function postEvent<T extends EpisodeScraperValueEventFullKeys>(event: T): PostEvent<T> {
   return `post${event.charAt(0).toUpperCase()}${event.slice(1)}` as PostEvent<T>;
 }
@@ -138,67 +139,32 @@ export class EpisodeScraper extends AsyncEventEmitter<EpisodeScraperEvents> {
     };
     try {
       await this.emit("scrapeEpisodeStart", ctx, epCtx);
-      const name = await this.scrapeValue("scrapeName", ctx, epCtx);
-      if (!name) {
-        throw new LoggableError({ result }, "Cannot scrape name");
-      }
-      result.name = name;
+
+      await this.scrapeValue("scrapeName", ctx, epCtx, "name");
       this.logger.info({ epNum, result }, "Scraped name");
 
-      const sortName = await this.scrapeValue("scrapeSortName", ctx, epCtx);
-      if (!sortName) {
-        throw new LoggableError({ result }, "Cannot scrape sortName");
-      }
-      result.sortName = sortName;
+      await this.scrapeValue("scrapeSortName", ctx, epCtx, "sortName");
       this.logger.info({ epNum, result }, "Scraped sortName");
 
-      const description = await this.scrapeValue("scrapeDescription", ctx, epCtx);
-      if (!description) {
-        throw new LoggableError({ result }, "Cannot scrape description");
-      }
-      result.description = description;
+      await this.scrapeValue("scrapeDescription", ctx, epCtx, "description");
       this.logger.info({ epNum, result }, "Scraped description");
 
-      const language = await this.scrapeValue("scrapeLanguage", ctx, epCtx);
-      if (!language) {
-        throw new LoggableError({ result }, "Cannot scrape language");
-      }
-      result.language = language;
+      await this.scrapeValue("scrapeLanguage", ctx, epCtx, "language");
       this.logger.info({ epNum, result }, "Scraped language");
 
-      const country = await this.scrapeValue("scrapeCountry", ctx, epCtx);
-      if (!country) {
-        throw new LoggableError({ result }, "Cannot scrape country");
-      }
-      result.country = country;
+      await this.scrapeValue("scrapeCountry", ctx, epCtx, "country");
       this.logger.info({ epNum, result }, "Scraped country");
 
-      const tvSeason = await this.scrapeValue("scrapeTvSeason", ctx, epCtx);
-      if (!tvSeason) {
-        throw new LoggableError({ result }, "Cannot scrape tvSeason");
-      }
-      result.tvSeason = tvSeason;
+      await this.scrapeValue("scrapeTvSeason", ctx, epCtx, "tvSeason");
       this.logger.info({ epNum, result }, "Scraped tvSeason");
 
-      const rating = await this.scrapeValue("scrapeRating", ctx, epCtx);
-      if (!rating) {
-        throw new LoggableError({ result }, "Cannot scrape rating");
-      }
-      result.rating = rating;
+      await this.scrapeValue("scrapeRating", ctx, epCtx, "rating");
       this.logger.info({ epNum, result }, "Scraped rating");
 
-      const airDate = await this.scrapeValue("scrapeAirDate", ctx, epCtx);
-      if (!airDate) {
-        throw new LoggableError({ result }, "Cannot scrape airDate");
-      }
-      result.airDate = airDate;
+      await this.scrapeValue("scrapeAirDate", ctx, epCtx, "airDate");
       this.logger.info({ epNum, result }, "Scraped airDate");
 
-      const posters = await this.scrapeValue("scrapePosters", ctx, epCtx);
-      if (!posters) {
-        throw new LoggableError({ result }, "Cannot scrape posters");
-      }
-      result.posters = posters;
+      await this.scrapeValue("scrapePosters", ctx, epCtx, "posters");
       this.logger.info({ epNum, result }, "Scraped posters");
 
       if (!Value.Check(scrapedEpisodeSchema, result)) {
@@ -229,11 +195,12 @@ export class EpisodeScraper extends AsyncEventEmitter<EpisodeScraperEvents> {
     return result.value;
   }
 
-  private async scrapeValue<T extends EpisodeScraperValueEventFullKeys>(event: T, ctx: EpisodeScraperContext, epCtx: EpisodeScraperEpisodeContext): Promise<EpisodeScraperValueEventValue<T> | undefined> {
+  // eslint-disable-next-line max-params
+  private async scrapeValue<T extends EpisodeScraperValueEventFullKeys>(event: T, ctx: EpisodeScraperContext, epCtx: EpisodeScraperEpisodeContext, name: keyof ScrapedEpisode): Promise<void> {
     await this.emit(preEvent(event), ctx, epCtx);
     const result: EpisodeScraperEventResult<any> = {};
     await this.emit(event, ctx, epCtx, result);
+    epCtx.result[name] = result.value;
     await this.emit(postEvent(event), ctx, epCtx);
-    return result.value;
   }
 }
