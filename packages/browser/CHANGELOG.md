@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/joshuaavalon/mdhs/compare/browser-v2.0.2...browser-v2.1.0) (2024-09-18)
+
+
+### Features
+
+* add select page ([420b700](https://github.com/joshuaavalon/mdhs/commit/420b700bb1fad418e40b93554d43e0537f3c5a91))
+
 ## [2.0.2](https://github.com/joshuaavalon/mdhs/compare/browser-v2.0.1...browser-v2.0.2) (2024-09-18)
 
 
