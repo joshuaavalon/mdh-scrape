@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.2](https://github.com/joshuaavalon/mdhs/compare/tmdb-v2.0.1...tmdb-v2.0.2) (2024-09-18)
+
+
+### Bug Fixes
+
+* fix tmdb still path url ([c7f1c74](https://github.com/joshuaavalon/mdhs/commit/c7f1c744745083e70a09ea9e8212cb5a5a289264))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @mdhs/core bumped from ^2.0.1 to ^2.0.2
+
 ## [2.0.1](https://github.com/joshuaavalon/mdhs/compare/tmdb-v2.0.0...tmdb-v2.0.1) (2024-09-18)
 
 
