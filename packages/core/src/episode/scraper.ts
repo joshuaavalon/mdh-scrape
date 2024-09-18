@@ -132,7 +132,7 @@ export class EpisodeScraper extends AsyncEventEmitter<EpisodeScraperEvents> {
   }
 
   private async scrapeEpisode(ctx: EpisodeScraperContext, epNum: number): Promise<LoggableError | ScrapedEpisode> {
-    const result: Partial<ScrapedEpisode> = {};
+    const result: Partial<ScrapedEpisode> = { order: epNum };
     const epCtx: EpisodeScraperEpisodeContext = {
       metadata: { num: epNum, padNum: epNum.toString().padStart(2, "0") },
       result
