@@ -20,6 +20,7 @@ export function createPino(opts?: LoggerOptions): Logger {
       target: "pino-pretty",
       options: { colorize: true }
     },
+    redact: ["result.*[*].data"],
     serializers: { err: errorSerializer }
   };
   return pino({ ...defaultOpts, ...opts });
