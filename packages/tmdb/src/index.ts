@@ -80,7 +80,7 @@ export const tmdbPlugin: EpisodeScraperPlugin<TmdbPluginOptions> = async (scrape
     scraper.on("scrapeDescription", onScrapeValue(opts, e => e.overview));
   }
   if (scrapePosters) {
-    scraper.on("scrapePosters", onScrapeValue(opts, async e => [await fetchImage(e.still_path)]));
+    scraper.on("scrapePosters", onScrapeValue(opts, async e => [await fetchImage(`https://image.tmdb.org/t/p/original${e.still_path}`)]));
   }
 };
 
