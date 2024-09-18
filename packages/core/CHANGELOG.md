@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/joshuaavalon/mdhs/compare/core-v2.0.1...core-v2.0.2) (2024-09-18)
+
+
+### Bug Fixes
+
+* Fixes value not set before post event ([931b651](https://github.com/joshuaavalon/mdhs/commit/931b651b62fe5eac66690ca5a98b350b87dc5e6b))
+
 ## [2.0.1](https://github.com/joshuaavalon/mdhs/compare/core-v2.0.0...core-v2.0.1) (2024-09-18)
 
 

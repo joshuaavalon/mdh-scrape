@@ -1,6 +1,6 @@
 {
   "name": "@mdhs/tmdb",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -30,6 +30,6 @@
   "author": "Joshua Avalon",
   "license": "Apache-2.0",
   "dependencies": {
-    "@mdhs/core": "^2.0.1"
+    "@mdhs/core": "^2.0.2"
   }
 }
