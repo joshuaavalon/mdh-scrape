@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.5](https://github.com/joshuaavalon/mdhs/compare/tmdb-v2.0.4...tmdb-v2.0.5) (2024-09-23)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @mdhs/core bumped from ^2.1.0 to ^2.1.1
+
 ## [2.0.4](https://github.com/joshuaavalon/mdhs/compare/tmdb-v2.0.3...tmdb-v2.0.4) (2024-09-23)
 
 
