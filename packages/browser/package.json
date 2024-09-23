@@ -1,6 +1,6 @@
 {
   "name": "@mdhs/browser",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -30,7 +30,7 @@
   "author": "Joshua Avalon",
   "license": "Apache-2.0",
   "dependencies": {
-    "@mdhs/core": "^2.1.0",
+    "@mdhs/core": "^2.1.1",
     "playwright": "^1.47.1"
   }
 }

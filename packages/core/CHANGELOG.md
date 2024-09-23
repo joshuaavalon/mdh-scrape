@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/joshuaavalon/mdhs/compare/core-v2.1.0...core-v2.1.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* Fixes dependencies ([f8bef2f](https://github.com/joshuaavalon/mdhs/commit/f8bef2f0901bc96d92c950a0215d745e66a27516))
+
 ## [2.1.0](https://github.com/joshuaavalon/mdhs/compare/core-v2.0.3...core-v2.1.0) (2024-09-23)
 
 

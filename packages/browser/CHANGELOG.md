@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.4](https://github.com/joshuaavalon/mdhs/compare/browser-v2.1.3...browser-v2.1.4) (2024-09-23)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @mdhs/core bumped from ^2.1.0 to ^2.1.1
+
 ## [2.1.3](https://github.com/joshuaavalon/mdhs/compare/browser-v2.1.2...browser-v2.1.3) (2024-09-23)
 
 
