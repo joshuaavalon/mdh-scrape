@@ -36,5 +36,7 @@
     "rimraf": "^6.0.1",
     "typescript": "^5.4.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "p-limit": "^6.1.0"
+  }
 }

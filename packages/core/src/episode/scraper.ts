@@ -1,5 +1,5 @@
+import pLimit from "p-limit";
 import { Value } from "@sinclair/typebox/value";
-
 import { AsyncEventEmitter } from "@joshuaavalon/async-event-emitter";
 import { LoggableError } from "#error";
 import { scrapedEpisodeSchema } from "#schema";
@@ -120,12 +120,13 @@ export class EpisodeScraper extends AsyncEventEmitter<EpisodeScraperEvents> {
     await plugin(this, opts);
   }
 
-  public async scrape(fromEp: number, toEp: number): Promise<(LoggableError | ScrapedEpisode)[]> {
+  public async scrape(fromEp: number, toEp: number, parallelLimit = Number.POSITIVE_INFINITY): Promise<(LoggableError | ScrapedEpisode)[]> {
+    const limit = pLimit(parallelLimit);
     const ctx: EpisodeScraperContext = { scraper: this, logger: this.logger };
     await this.emit("init", ctx);
     try {
       this.logger.info({ fromEp, toEp }, "Start scraping episode(s)");
-      return await Promise.all(range(fromEp, toEp + 1).map(async epNum => await this.scrapeEpisode(ctx, epNum)));
+      return await Promise.all(range(fromEp, toEp + 1).map(async epNum => await limit(() => this.scrapeEpisode(ctx, epNum))));
     } finally {
       await this.emit("close", ctx);
     }

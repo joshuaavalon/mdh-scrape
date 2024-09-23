@@ -1,5 +1,5 @@
+import pLimit from "p-limit";
 import { compressImage } from "#func";
-
 import type { EpisodeScraperPlugin } from "#episode";
 
 
@@ -10,6 +10,7 @@ export interface FormatPluginOptions {
   postScrapeDescription?: boolean;
   postScrapePosters?: boolean;
   postScrapeAirDate?: boolean;
+  parallelLimit?: number;
 }
 
 export const formatPlugin: EpisodeScraperPlugin<FormatPluginOptions> = async (scraper, opts) => {
@@ -19,7 +20,8 @@ export const formatPlugin: EpisodeScraperPlugin<FormatPluginOptions> = async (sc
     postScrapeSortName = true,
     postScrapeDescription = true,
     postScrapePosters = true,
-    postScrapeAirDate = true
+    postScrapeAirDate = true,
+    parallelLimit = Number.POSITIVE_INFINITY
   } = opts;
   if (postScrapeName) {
     scraper.on("postScrapeName", (_ctx, epCtx) => {
@@ -55,10 +57,11 @@ export const formatPlugin: EpisodeScraperPlugin<FormatPluginOptions> = async (sc
         .replaceAll("</h1><br/>\n", "</h1>\n");
     });
     if (postScrapePosters) {
+      const limit = pLimit(parallelLimit);
       scraper.on("postScrapePosters", async (_ctx, epCtx) => {
         const { posters = [] } = epCtx.result;
         await Promise.all(posters.map(async poster => {
-          poster.data = await compressImage(poster.data);
+          poster.data = await limit(() => compressImage(poster.data));
         }));
         epCtx.result.posters = posters;
       });
