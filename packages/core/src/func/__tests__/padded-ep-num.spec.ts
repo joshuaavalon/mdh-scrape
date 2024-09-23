@@ -1,6 +1,7 @@
 import { assert } from "chai";
-import type { EpisodeScraperEventResult } from "#episode";
 import { paddedEpNum } from "../padded-ep-num.js";
+
+import type { EpisodeScraperEventResult } from "#episode";
 
 describe("Test paddedUrl", async () => {
   it("should pad", async () => {
