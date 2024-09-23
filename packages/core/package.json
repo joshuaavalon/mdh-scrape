@@ -55,6 +55,7 @@
     "@types/luxon": "^3.4.2",
     "image-type": "^5.2.0",
     "luxon": "^3.4.4",
+    "p-limit": "^6.1.0",
     "pino": "^9.3.2",
     "pino-pretty": "^11.2.2",
     "sharp": "^0.33.5"
