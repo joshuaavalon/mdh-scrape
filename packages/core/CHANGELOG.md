@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/joshuaavalon/mdhs/compare/core-v2.0.3...core-v2.1.0) (2024-09-23)
+
+
+### Features
+
+* add parallelLimit support ([0040438](https://github.com/joshuaavalon/mdhs/commit/0040438a49e64ba282c4cb3c915ae587ec0bd952))
+
 ## [2.0.3](https://github.com/joshuaavalon/mdhs/compare/core-v2.0.2...core-v2.0.3) (2024-09-18)
 
 
